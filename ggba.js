@@ -7,21 +7,25 @@ ggbviewsin = Y.one('input[name="ggbviews"]');
 ggbcodebaseversionin = Y.one('input[name="ggbcodebaseversion"]');
 
 Y.on('submit', function (e) {
-    ggbparametersin.set('value', JSON.stringify(applet1.getParameters())); //TODO workaround: ggbOnInit not called if empty file loaded
-    parameters.ggbBase64 = ggbApplet.getBase64();
-    ggbparametersin.set('value', JSON.stringify(parameters));
-    ggbviewsin.set('value', JSON.stringify(applet1.getViews())); //TODO workaround: ggbOnInit not called if empty file loaded
-    ggbcodebaseversionin.set('value', applet1.getHTML5CodebaseVersion()); //TODO workaround: ggbOnInit not called if empty file loaded
+    if (!(typeof applet1 === 'undefined') && !(typeof ggbApplet === 'undefined')) {
+        ggbparametersin.set('value', JSON.stringify(applet1.getParameters()));
+        parameters.ggbBase64 = ggbApplet.getBase64();
+        ggbparametersin.set('value', JSON.stringify(parameters));
+        ggbviewsin.set('value', JSON.stringify(applet1.getViews()));
+        ggbcodebaseversionin.set('value', applet1.getHTML5CodebaseVersion());
+    }
 }, '#mform1');
 Y.on('mouseleave', function (e) {
-    ggbparametersin.set('value', JSON.stringify(applet1.getParameters())); //TODO workaround: ggbOnInit not called if empty file loaded
-    parameters.ggbBase64 = ggbApplet.getBase64();
-    if (JSON.stringify(parameters) != ggbparametersin.get('value')) {
-        M.core_formchangechecker.set_form_changed();
+    if (!(typeof applet1 === 'undefined') && !(typeof ggbApplet === 'undefined')) {
+        ggbparametersin.set('value', JSON.stringify(applet1.getParameters()));
+        parameters.ggbBase64 = ggbApplet.getBase64();
+        if (JSON.stringify(parameters) != ggbparametersin.get('value')) {
+            M.core_formchangechecker.set_form_changed();
+        }
+        ggbparametersin.set('value', JSON.stringify(parameters));
+        ggbviewsin.set('value', JSON.stringify(applet1.getViews()));
+        ggbcodebaseversionin.set('value', applet1.getHTML5CodebaseVersion());
     }
-    ggbparametersin.set('value', JSON.stringify(parameters));
-    ggbviewsin.set('value', JSON.stringify(applet1.getViews())); //TODO workaround: ggbOnInit not called if empty file loaded
-    ggbcodebaseversionin.set('value', applet1.getHTML5CodebaseVersion()); //TODO workaround: ggbOnInit not called if empty file loaded
 }, '#applet_container1');
 
 function ggbOnInit(id) {
