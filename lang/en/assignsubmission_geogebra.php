@@ -38,11 +38,11 @@ $string['ggbturl'] = 'GeoGebra template to use for student';
 $string['ggbturl_help'] = 'The "Standard"-Templates are not working at the moment, only user defined works. This file will be used
 as template for the student.';
 $string['ggbtemplates'] = 'Choose a template';
-$string['algebragraphics'] = 'Algebra and Graphics';
-$string['basicgeo'] = 'Basic Geometry';
+$string['algebraAndGraphics'] = 'Algebra & Graphics';
 $string['geometry'] = 'Geometry';
-$string['spreadsheetgraphics'] = 'Spreadsheet and Graphics';
-$string['casgraphics'] = 'CAS and Graphics';
-$string['graphics3d'] = '3D Graphics';
+$string['spreadsheet'] = 'Spreadsheet';
+$string['cas'] = 'CAS';
+$string['perspective3d'] = '3D Graphics';
+$string['probCalc'] = 'Probability Calculator';
 $string['userdefined'] = 'User defined:';
 $string['eventassessableuploaded'] = 'Eine GeoGebra Datei wurde abgegeben:';

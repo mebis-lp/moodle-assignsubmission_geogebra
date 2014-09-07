@@ -64,13 +64,4 @@ class submission_created extends \mod_assign\event\submission_created {
         return $descriptionstring;
     }
 
-    /**
-     * Custom validation.
-     *
-     * @throws \coding_exception
-     * @return void
-     */
-    protected function validate_data() {
-        parent::validate_data();
-    }
 }

@@ -151,16 +151,16 @@ class assign_submission_geogebra extends assign_submission_plugin {
         $url = $this->get_config('ggbturl');
 
         $ggbtemplates = array(
-                '1'           => get_string('algebragraphics', 'assignsubmission_geogebra'),
-                '2'           => get_string('basicgeo', 'assignsubmission_geogebra'),
-                '3'           => get_string('geometry', 'assignsubmission_geogebra'),
-                '4'           => get_string('spreadsheetgraphics', 'assignsubmission_geogebra'),
-                '5'           => get_string('casgraphics', 'assignsubmission_geogebra'),
-                '6'           => get_string('graphics3d', 'assignsubmission_geogebra'),
+                '1'           => get_string('algebraAndGraphics', 'assignsubmission_geogebra'),
+                '2'           => get_string('geometry', 'assignsubmission_geogebra'),
+                '3'           => get_string('spreadsheet', 'assignsubmission_geogebra'),
+                '4'           => get_string('cas', 'assignsubmission_geogebra'),
+                '5'           => get_string('perspective3d', 'assignsubmission_geogebra'),
+                '6'           => get_string('probCalc', 'assignsubmission_geogebra'),
                 'userdefined' => get_string('userdefined', 'assignsubmission_geogebra')
         );
 
-        // Partly copied from qtype ggb
+        // Partly copied from qtype ggb.
         $ggbturlinput = array();
         $clientid = uniqid();
         $fp = $this->initggtfilepicker($clientid, 'ggbturl');

@@ -38,11 +38,11 @@ $string['ggbturl'] = 'GeoGebravorlage für den Teilnehmer';
 $string['ggbturl_help'] = 'Die Perspektiven funktionieren zur Zeit noch nicht perfekt, da für diese GeoGebra 5.0 Beta verwendet
 wird. Benutzerdefinierte Vorlagen von GeoGebraTube funktionieren problemlos.';
 $string['ggbtemplates'] = 'Vorlage wählen';
-$string['algebragraphics'] = 'Algebra und Grafik';
-$string['basicgeo'] = 'Elementare Geometrie';
+$string['algebraAndGraphics'] = 'Algebra & Grafik';
 $string['geometry'] = 'Geometrie';
-$string['spreadsheetgraphics'] = 'Tabelle und Grafik';
-$string['casgraphics'] = 'CAS und Grafik';
-$string['graphics3d'] = '3D Grafik';
+$string['spreadsheet'] = 'Tabelle';
+$string['cas'] = 'CAS';
+$string['perspective3d'] = '3D Grafik';
+$string['probCalc'] = 'Wahrscheinlichkeit';
 $string['userdefined'] = 'Benutzerdefiniert:';
 $string['eventassessableuploaded'] = 'A GeoGebra submission has been uploaded:';

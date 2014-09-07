@@ -53,9 +53,9 @@ class submission_updated extends \mod_assign\event\submission_updated {
      * @return string
      */
     public function get_description() {
-        $descriptionstring = "The user with id '$this->userid' updated an online text submission with " .
-            "'{$this->other['geogebrawordcount']}' words in the assignment with the course module id " .
-            "'$this->contextinstanceid'";
+        $descriptionstring =
+                "The user with id '$this->userid' updated an geogebra submission in the assignment with the course module id " .
+                "'$this->contextinstanceid'";
         if (!empty($this->other['groupid'])) {
             $descriptionstring .= " for the group with id '{$this->other['groupid']}'.";
         } else {
@@ -65,13 +65,4 @@ class submission_updated extends \mod_assign\event\submission_updated {
         return $descriptionstring;
     }
 
-    /**
-     * Custom validation.
-     *
-     * @throws \coding_exception
-     * @return void
-     */
-    protected function validate_data() {
-        parent::validate_data();
-    }
 }
