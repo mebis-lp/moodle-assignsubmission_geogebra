@@ -45,4 +45,4 @@ $string['cas'] = 'CAS';
 $string['perspective3d'] = '3D Grafik';
 $string['probCalc'] = 'Wahrscheinlichkeit';
 $string['userdefined'] = 'Benutzerdefiniert:';
-$string['eventassessableuploaded'] = 'A GeoGebra submission has been uploaded:';
+$string['eventassessableuploaded'] = 'Eine GeoGebra Datei wurde abgegeben:';
