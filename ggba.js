@@ -32,4 +32,12 @@ function ggbOnInit(id) {
     ggbparametersin.set('value', JSON.stringify(applet1.getParameters()));
     ggbviewsin.set('value', JSON.stringify(applet1.getViews()));
     ggbcodebaseversionin.set('value', applet1.getHTML5CodebaseVersion());
+
+    document.querySelector('article').onkeypress = checkEnter;
+}
+
+function checkEnter(e){
+    e = e || event;
+    var txtArea = /textarea/i.test((e.target || e.srcElement).tagName);
+    return txtArea || (e.keyCode || e.which || e.charCode || 0) !== 13;
 }
