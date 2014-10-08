@@ -22,9 +22,7 @@
  * @package        assignsubmission_geogebra
  * @author         Christoph Stadlbauer <christoph.stadlbauer@geogebra.org>
  * @copyright  (c) International GeoGebra Institute 2014
- * @license        http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later,
- * license of GeoGebra: http://creativecommons.org/licenses/by-nc-nd/3.0/
- * For commercial use please see: http://www.geogebra.org/license
+ * @license        http://www.geogebra.org/license
  */
 
 defined('MOODLE_INTERNAL') || die();
@@ -34,9 +32,7 @@ defined('MOODLE_INTERNAL') || die();
  *
  * @author         Christoph Stadlbauer <christoph.stadlbauer@geogebra.org>
  * @copyright  (c) International GeoGebra Institute 2014
- * @license        http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later,
- * license of GeoGebra: http://creativecommons.org/licenses/by-nc-nd/3.0/
- * For commercial use please see: http://www.geogebra.org/license
+ * @license        http://www.geogebra.org/license
  */
 class assign_submission_geogebra extends assign_submission_plugin {
 
@@ -215,12 +211,12 @@ class assign_submission_geogebra extends assign_submission_plugin {
         $geogebrasubmission = $this->get_geogebra_submission($submissionorgrade->id);
 
         $params = array(
-                'context' => context_module::instance($this->assignment->get_course_module()->id),
+                'context'  => context_module::instance($this->assignment->get_course_module()->id),
                 'courseid' => $this->assignment->get_course()->id,
                 'objectid' => $submissionorgrade->id,
-                'other' => array(
+                'other'    => array(
                         'pathnamehashes' => array(),
-                        'content' => ''
+                        'content'        => ''
                 )
         );
         if (!empty($submissionorgrade->userid) && ($submissionorgrade->userid != $USER->id)) {
@@ -243,11 +239,11 @@ class assign_submission_geogebra extends assign_submission_plugin {
         unset($params['objectid']);
         unset($params['other']);
         $params['other'] = array(
-                'submissionid' => $submissionorgrade->id,
+                'submissionid'      => $submissionorgrade->id,
                 'submissionattempt' => $submissionorgrade->attemptnumber,
-                'submissionstatus' => $submissionorgrade->status,
-                'groupid' => $groupid,
-                'groupname' => $groupname
+                'submissionstatus'  => $submissionorgrade->status,
+                'groupid'           => $groupid,
+                'groupname'         => $groupname
         );
 
         if ($geogebrasubmission) {

@@ -20,9 +20,7 @@
  * @package        assignsubmission_geogebra
  * @author         Christoph Stadlbauer <christoph.stadlbauer@geogebra.org>
  * @copyright  (c) International GeoGebra Institute 2014
- * @license        http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later,
- * license of GeoGebra: http://creativecommons.org/licenses/by-nc-nd/3.0/
- * For commercial use please see: http://www.geogebra.org/license
+ * @license        http://www.geogebra.org/license
  */
 
 defined('MOODLE_INTERNAL') || die();
@@ -35,9 +33,7 @@ require_once($CFG->dirroot . '/question/type/geogebra/tests/fixtures/ggbstringsf
  * Contains the event tests for the plugin.
  *
  * @copyright  (c) International GeoGebra Institute 2014
- * @license        http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later,
- * license of GeoGebra: http://creativecommons.org/licenses/by-nc-nd/3.0/
- * For commercial use please see: http://www.geogebra.org/license
+ * @license        http://www.geogebra.org/license
  */
 class assignsubmission_geogebra_events_testcase extends advanced_testcase {
 

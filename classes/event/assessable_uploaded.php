@@ -20,9 +20,7 @@
  * @package        assignsubmission_geogebra
  * @author         Christoph Stadlbauer <christoph.stadlbauer@geogebra.org>
  * @copyright  (c) International GeoGebra Institute 2014
- * @license        http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later,
- * license of GeoGebra: http://creativecommons.org/licenses/by-nc-nd/3.0/
- * For commercial use please see: http://www.geogebra.org/license
+ * @license        http://www.geogebra.org/license
  */
 
 namespace assignsubmission_geogebra\event;
@@ -33,9 +31,7 @@ defined('MOODLE_INTERNAL') || die();
  * The assignsubmission_geogebra assessable uploaded event class.
  *
  * @copyright  (c) International GeoGebra Institute 2014
- * @license        http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later,
- * license of GeoGebra: http://creativecommons.org/licenses/by-nc-nd/3.0/
- * For commercial use please see: http://www.geogebra.org/license
+ * @license        http://www.geogebra.org/license
  */
 class assessable_uploaded extends \core\event\assessable_uploaded {
 
@@ -46,7 +42,7 @@ class assessable_uploaded extends \core\event\assessable_uploaded {
      */
     public function get_description() {
         return "The user with id '$this->userid' has saved an geogebra submission with id '$this->objectid' " .
-            "in the assignment activity with the course module id '$this->contextinstanceid'.";
+        "in the assignment activity with the course module id '$this->contextinstanceid'.";
     }
 
     /**

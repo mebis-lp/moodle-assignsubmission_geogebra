@@ -20,14 +20,12 @@
  * @package        assignsubmission_geogebra
  * @author         Christoph Stadlbauer <christoph.stadlbauer@geogebra.org>
  * @copyright  (c) International GeoGebra Institute 2014
- * @license        http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later,
- * license of GeoGebra: http://creativecommons.org/licenses/by-nc-nd/3.0/
- * For commercial use please see: http://www.geogebra.org/license
+ * @license        http://www.geogebra.org/license
  */
 
 defined('MOODLE_INTERNAL') || die();
 
-$plugin->version = 2014081904;
+$plugin->version = 2014081905;
 $plugin->requires = 2014051200;
 $plugin->dependencies = array(
         'qtype_geogebra' => 2014081900,
@@ -37,4 +35,4 @@ $plugin->component = 'assignsubmission_geogebra';
 
 $plugin->maturity = MATURITY_RC;
 
-$plugin->release = '0.9.4';
+$plugin->release = '0.9.5';

@@ -20,9 +20,7 @@
  * @package        assignsubmission_geogebra
  * @author         Christoph Stadlbauer <christoph.stadlbauer@geogebra.org>
  * @copyright  (c) International GeoGebra Institute 2014
- * @license        http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later,
- * license of GeoGebra: http://creativecommons.org/licenses/by-nc-nd/3.0/
- * For commercial use please see: http://www.geogebra.org/license
+ * @license        http://www.geogebra.org/license
  */
 
 namespace assignsubmission_geogebra\event;
@@ -33,9 +31,7 @@ defined('MOODLE_INTERNAL') || die();
  * The assignsubmission_geogebra submission_created event class.
  *
  * @copyright  (c) International GeoGebra Institute 2014
- * @license        http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later,
- * license of GeoGebra: http://creativecommons.org/licenses/by-nc-nd/3.0/
- * For commercial use please see: http://www.geogebra.org/license
+ * @license        http://www.geogebra.org/license
  */
 class submission_created extends \mod_assign\event\submission_created {
 
@@ -54,7 +50,7 @@ class submission_created extends \mod_assign\event\submission_created {
      */
     public function get_description() {
         $descriptionstring = "The user with id '$this->userid' created an geogebra submission with the course module id " .
-            "'$this->contextinstanceid'";
+                "'$this->contextinstanceid'";
         if (!empty($this->other['groupid'])) {
             $descriptionstring .= " for the group with id '{$this->other['groupid']}'.";
         } else {
@@ -63,5 +59,4 @@ class submission_created extends \mod_assign\event\submission_created {
 
         return $descriptionstring;
     }
-
 }
