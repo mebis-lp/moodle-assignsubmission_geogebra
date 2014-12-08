@@ -12,7 +12,7 @@
 $string['geogebra'] = 'GeoGebra';
 $string['enabled'] = 'GeoGebra';
 $string['algebra'] => 'Algebra';,
-$string['allowgeogebrasubmissions'] => 'Enabled';,
+$string['allowgeogebrasubmissions'] => 'Włączone';,
 $string['cas'] => 'CAS';,
 $string['default'] => 'Enabled by default';,
 $string['default_help'] => 'If set, this submission method will be enabled by default for all new assignments.';,
