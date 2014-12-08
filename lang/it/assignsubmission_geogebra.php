@@ -27,4 +27,4 @@ $string['perspective3d'] => 'Grafici 3D';,
 $string['pluginname'] => 'Consegne di GeoGebra';,
 $string['probCalc'] => 'Calcolatore di Probabilità';,
 $string['spreadsheet'] => 'Foglio di calcolo';,
-$string['userdefined'] => 'Definito dall'utente:';
+$string['userdefined'] => 'Definito dall\'utente:';
