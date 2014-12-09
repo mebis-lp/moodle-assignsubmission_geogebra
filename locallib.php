@@ -32,7 +32,7 @@ class assign_submission_geogebra extends assign_submission_plugin {
      * @return string
      */
     public function get_name() {
-        return get_string('geogebra', 'assignsubmission_geogebra');
+        return 'GeoGebra';
     }
 
     /**
@@ -64,37 +64,16 @@ class assign_submission_geogebra extends assign_submission_plugin {
         if ($submissionorgrade) {
             $geogebrasubmission = $this->get_geogebra_submission($submissionid);
             if ($geogebrasubmission) {
-                $applet = $this->get_applet($geogebrasubmission);
+                // Only load stored applet if ggbparameters and ggbviews not empty.
+                if (empty($geogebrasubmission->ggbparameters) || empty($geogebrasubmission->ggbviews)) {
+                    $parameters = $this->get_ggb_params($template);
+                    $applet = $this->get_applet(null, $parameters);
+                } else {
+                    $applet = $this->get_applet($geogebrasubmission);
+                }
             }
         } else {
-            if ($template == "userdefined") {
-                $url = $this->get_config('ggbturl');
-                $tmp = explode('/', $url);
-                if (!empty($tmp)) {
-                    $materialid = array_pop($tmp);
-                    if (strpos($materialid, 'm') === 0) {
-                        $materialid = substr($materialid, 1);
-                    }
-                } else {
-                    if (strpos($url, 'm') === 0) {
-                        $materialid = substr($url, 1);
-                    } else {
-                        $materialid = $url;
-                    }
-                }
-                $parameters = json_encode(array(
-                        "material_id" => $materialid
-                ));
-            } else {
-                $parameters = json_encode(array(
-                        "perspective"     => $template,
-                        "showMenuBar"     => false,
-                        "showResetIcon"   => false,
-                        "showToolBar"     => true,
-                        "showToolBarHelp" => true,
-                        "useBrowserForJS" => true
-                ));
-            }
+            $parameters = $this->get_ggb_params($template);
             $applet = $this->get_applet(null, $parameters);
         }
 
@@ -106,7 +85,7 @@ class assign_submission_geogebra extends assign_submission_plugin {
         $mform->setType('ggbcodebaseversion', PARAM_RAW);
 
         $mform->addElement('html', $this->deployscript);
-        if (isset($materialid)) {
+        if ($template == "userdefined") {
             $mform->addElement('html', '<div class="fitem"><div id="applet_container1" class="felement"></div></div>');
         } else {
             $mform->addElement('html',
@@ -133,7 +112,7 @@ class assign_submission_geogebra extends assign_submission_plugin {
         $url = $this->get_config('ggbturl');
 
         $ggbtemplates = array(
-                '1'           => get_string('algebraAndGraphics', 'assignsubmission_geogebra'),
+                '1'           => get_string('algebra', 'assignsubmission_geogebra'),
                 '2'           => get_string('geometry', 'assignsubmission_geogebra'),
                 '3'           => get_string('spreadsheet', 'assignsubmission_geogebra'),
                 '4'           => get_string('cas', 'assignsubmission_geogebra'),
@@ -232,6 +211,14 @@ class assign_submission_geogebra extends assign_submission_plugin {
                 'groupname'         => $groupname
         );
 
+        // We must not save the assignment if anything goes wrong with the applet and above strings are empty.
+        if ($geogebrasubmission) {
+            if (empty($data->ggbparameters) || empty($data->ggbviews)) {
+                $this->set_error(get_string('appletmissinginsubmission', 'assignsubmission_geogebra'));
+                return false;
+            }
+        }
+
         if ($geogebrasubmission) {
             $geogebrasubmission->ggbparameters = $data->ggbparameters;
             $geogebrasubmission->ggbviews = $data->ggbviews;
@@ -289,7 +276,7 @@ class assign_submission_geogebra extends assign_submission_plugin {
                     '<title>' . $user->firstname . ' ' . $user->lastname . ' - ' . $this->assignment->get_instance()->name .
                     '</title>' . $this->deployscript . $applet . '</head>';
             $submissioncontent = '<!DOCTYPE html><html>' . $head . '<body><div id="applet_container1"></div></body></html>';
-            $filename = get_string('geogebrafilename', 'assignsubmission_geogebra');
+            $filename = 'geogebra.html';
             $files[$filename] = array($submissioncontent);
         }
 
@@ -430,5 +417,41 @@ EOD;
         }
 
         return $injectstring;
+    }
+
+    /**
+     * @param $template
+     * @return array
+     */
+    private function get_ggb_params($template) {
+        if ($template == "userdefined") {
+            $url = $this->get_config('ggbturl');
+            $tmp = explode('/', $url);
+            if (!empty($tmp)) {
+                $materialid = array_pop($tmp);
+                if (strpos($materialid, 'm') === 0) {
+                    $materialid = substr($materialid, 1);
+                }
+            } else {
+                if (strpos($url, 'm') === 0) {
+                    $materialid = substr($url, 1);
+                } else {
+                    $materialid = $url;
+                }
+            }
+            $parameters = json_encode(array(
+                    "material_id" => $materialid
+            ));
+        } else {
+            $parameters = json_encode(array(
+                    "perspective"     => $template,
+                    "showMenuBar"     => false,
+                    "showResetIcon"   => false,
+                    "showToolBar"     => true,
+                    "showToolBarHelp" => true,
+                    "useBrowserForJS" => true
+            ));
+        }
+        return $parameters;
     }
 }
