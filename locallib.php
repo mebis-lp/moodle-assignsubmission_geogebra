@@ -71,6 +71,9 @@ class assign_submission_geogebra extends assign_submission_plugin {
                 } else {
                     $applet = $this->get_applet($geogebrasubmission);
                 }
+            } else {
+                $parameters = $this->get_ggb_params($template);
+                $applet = $this->get_applet(null, $parameters);
             }
         } else {
             $parameters = $this->get_ggb_params($template);
