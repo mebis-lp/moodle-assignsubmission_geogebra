@@ -12,7 +12,7 @@
 $string['geogebra'] = 'GeoGebra';
 $string['enabled'] = 'GeoGebra';
 $string['algebra'] = '代数';
-$string['allowgeogebrasubmissions'] = '启用';
+$string['allowgeogebrasubmissions'] = '已启用';
 $string['cas'] = '运算区';
 $string['default'] = '默认启用';
 $string['default_help'] = '如果已经设置, 对于所有的新任务该提交方法就会被默认启用.';
