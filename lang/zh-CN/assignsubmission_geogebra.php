@@ -26,5 +26,5 @@ $string['ggbturl_help'] = '为学生用于模板的格局或者 GeoGebraTube 素
 $string['perspective3d'] = '3D 绘图区';
 $string['pluginname'] = 'GeoGebra 提交';
 $string['probCalc'] = '概率统计';
-$string['spreadsheet'] = '工作表';
+$string['spreadsheet'] = '表格';
 $string['userdefined'] = '用户定制:';
