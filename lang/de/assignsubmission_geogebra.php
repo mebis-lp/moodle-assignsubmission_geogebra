@@ -28,3 +28,6 @@ $string['pluginname'] = 'GeoGebra Abgabetyp';
 $string['probCalc'] = 'Wahrscheinlichkeit';
 $string['spreadsheet'] = 'Tabelle';
 $string['userdefined'] = 'Benutzerdefiniert:';
+$string['useafile'] = '... oder eine ggb-Datei verwenden';
+$string['useafile_help'] = 'Sie können auch eine GeoGebra-Datei verwenden. Bitte vorher den GeoGebra Abgabetyp aktivieren!';
+$string['dragndrop'] = 'GeoGebra Datei mit Hilfe von drag and drop (ziehen und ablegen) auf den Bereich Abgabetypen hinzufügen.';

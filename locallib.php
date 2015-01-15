@@ -59,25 +59,42 @@ class assign_submission_geogebra extends assign_submission_plugin {
      */
     public function get_form_elements_for_user($submissionorgrade, MoodleQuickForm $mform, stdClass $data, $userid) {
         $submissionid = $submissionorgrade ? $submissionorgrade->id : 0;
-        $template = $this->get_config('ggbtemplate');
-
+        $usefile = $this->get_config('usefile');
+        if (!$usefile) {
+            $template = $this->get_config('ggbtemplate');
+        }
         if ($submissionorgrade) {
             $geogebrasubmission = $this->get_geogebra_submission($submissionid);
             if ($geogebrasubmission) {
                 // Only load stored applet if ggbparameters and ggbviews not empty.
                 if (empty($geogebrasubmission->ggbparameters) || empty($geogebrasubmission->ggbviews)) {
-                    $parameters = $this->get_ggb_params($template);
-                    $applet = $this->get_applet(null, $parameters);
+                    if ($usefile) {
+                        $applet = $this->get_applet(null, $this->get_config('ggbparameters'),
+                                $this->get_config('ggbcodebaseversion'), $this->get_config('ggbviews'));
+                    } else {
+                        $parameters = $this->get_ggb_params($template);
+                        $applet = $this->get_applet(null, $parameters);
+                    }
                 } else {
                     $applet = $this->get_applet($geogebrasubmission);
                 }
             } else {
+                if ($usefile) {
+                    $applet = $this->get_applet(null, $this->get_config('ggbparameters'),
+                            $this->get_config('ggbcodebaseversion'), $this->get_config('ggbviews'));
+                } else {
+                    $parameters = $this->get_ggb_params($template);
+                    $applet = $this->get_applet(null, $parameters);
+                }
+            }
+        } else {
+            if ($usefile) {
+                $applet = $this->get_applet(null, $this->get_config('ggbparameters'),
+                        $this->get_config('ggbcodebaseversion'), $this->get_config('ggbviews'));
+            } else {
                 $parameters = $this->get_ggb_params($template);
                 $applet = $this->get_applet(null, $parameters);
             }
-        } else {
-            $parameters = $this->get_ggb_params($template);
-            $applet = $this->get_applet(null, $parameters);
         }
 
         $mform->addElement('hidden', 'ggbparameters');
@@ -88,12 +105,12 @@ class assign_submission_geogebra extends assign_submission_plugin {
         $mform->setType('ggbcodebaseversion', PARAM_RAW);
 
         $mform->addElement('html', $this->deployscript);
-        if ($template == "userdefined") {
+        if ($usefile || $template == "userdefined") {
             $mform->addElement('html', '<div class="fitem"><div id="applet_container1" class="felement"></div></div>');
         } else {
             $mform->addElement('html',
                     '<div class="fitem">
-                        <div id="applet_container1" class="felement" style="display: block; height: 600px;"></div>
+                        <div id="applet_container1" class="felement"></div>
                         </div>');
         }
 
@@ -113,6 +130,15 @@ class assign_submission_geogebra extends assign_submission_plugin {
     public function get_settings(MoodleQuickForm $mform) {
         $template = $this->get_config('ggbtemplate');
         $url = $this->get_config('ggbturl');
+
+        $mform->addElement('hidden', 'ggbparameters');
+        $mform->setType('ggbparameters', PARAM_RAW);
+
+        $mform->addElement('hidden', 'ggbviews');
+        $mform->setType('ggbviews', PARAM_RAW);
+
+        $mform->addElement('hidden', 'ggbcodebaseversion');
+        $mform->setType('ggbcodebaseversion', PARAM_RAW);
 
         $ggbtemplates = array(
                 '1'           => get_string('algebra', 'assignsubmission_geogebra'),
@@ -143,6 +169,18 @@ class assign_submission_geogebra extends assign_submission_plugin {
         $mform->addGroup($ggbturlinput, 'ggbturlinput', get_string('ggbturl', 'assignsubmission_geogebra'), array(' '), false);
         $mform->disabledIf('ggbturlinput', 'assignsubmission_geogebra_enabled', 'notchecked');
         $mform->addHelpButton('ggbturlinput', 'ggbturl', 'assignsubmission_geogebra');
+        $mform->addElement('checkbox', 'usefile', get_string('useafile', 'qtype_geogebra'), get_string('dragndrop', 'assignsubmission_geogebra'));
+        $mform->addHelpButton('usefile', 'useafile', 'assignsubmission_geogebra');
+        if (!empty($this->ggbparameters) && empty($this->ggbturl)) {
+            $mform->setDefault('usefile', true);
+        }
+        $mform->disabledIf('ggbtemplate', 'usefile', 'checked');
+        $mform->disabledIf('ggbturl', 'usefile', 'checked');
+        $mform->disabledIf('filepicker-button-' . $clientid, 'usefile', 'checked');
+        $mform->disabledIf('usefile', 'assignsubmission_geogebra_enabled', 'notchecked');
+
+        $mform->addElement('html', $this->deployscript);
+        $mform->addElement('html', '<div class="fitem"><div id="applet_container1" class="felement"></div></div>');
     }
 
     /**
@@ -154,13 +192,28 @@ class assign_submission_geogebra extends assign_submission_plugin {
      * @return bool - on error the subtype should call set_error and return false.
      */
     public function save_settings(stdClass $formdata) {
-        $this->set_config('ggbtemplate', $formdata->ggbtemplate);
-        if ($formdata->ggbtemplate == 'userdefined') {
-            if (!isset($formdata->ggbturl)) {
-                parent::set_error("No url chosen!");
+        if ($formdata->usefile) {
+            if (empty($formdata->ggbparameters)
+                    || empty($formdata->ggbviews)
+                    || empty($formdata->ggbcodebaseversion)
+            ) {
+                parent::set_error(get_string('noappletloaded', 'qtype_geogebra'));
                 return false;
+            } else {
+                $this->set_config('usefile', $formdata->usefile);
+                $this->set_config('ggbparameters', $formdata->ggbparameters);
+                $this->set_config('ggbviews', $formdata->ggbviews);
+                $this->set_config('ggbcodebaseversion', $formdata->ggbcodebaseversion);
             }
-            $this->set_config('ggbturl', $formdata->ggbturl);
+        } else {
+            $this->set_config('ggbtemplate', $formdata->ggbtemplate);
+            if ($formdata->ggbtemplate == 'userdefined') {
+                if (!isset($formdata->ggbturl)) {
+                    parent::set_error("No url chosen!");
+                    return false;
+                }
+                $this->set_config('ggbturl', $formdata->ggbturl);
+            }
         }
         return true;
     }
