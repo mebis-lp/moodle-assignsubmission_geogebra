@@ -110,7 +110,7 @@ class assign_submission_geogebra extends assign_submission_plugin {
         } else {
             $mform->addElement('html',
                     '<div class="fitem">
-                        <div id="applet_container1" class="felement"></div>
+                        <div id="applet_container1" class="felement" style="display: block; height: 600px;"></div>
                         </div>');
         }
 
@@ -130,7 +130,12 @@ class assign_submission_geogebra extends assign_submission_plugin {
     public function get_settings(MoodleQuickForm $mform) {
         $template = $this->get_config('ggbtemplate');
         $url = $this->get_config('ggbturl');
-
+        $usefile = $this->get_config('usefile');
+        if ($usefile) {
+            $ggbparameters = $this->get_config('ggbparameters');
+            $ggbviews = $this->get_config('ggbviews');
+            $ggbcodebaseversion = $this->get_config('ggbcodebaseversion');
+        }
         $mform->addElement('hidden', 'ggbparameters');
         $mform->setType('ggbparameters', PARAM_RAW);
 
@@ -171,7 +176,7 @@ class assign_submission_geogebra extends assign_submission_plugin {
         $mform->addHelpButton('ggbturlinput', 'ggbturl', 'assignsubmission_geogebra');
         $mform->addElement('checkbox', 'usefile', get_string('useafile', 'qtype_geogebra'), get_string('dragndrop', 'assignsubmission_geogebra'));
         $mform->addHelpButton('usefile', 'useafile', 'assignsubmission_geogebra');
-        if (!empty($this->ggbparameters) && empty($this->ggbturl)) {
+        if ($usefile) {
             $mform->setDefault('usefile', true);
         }
         $mform->disabledIf('ggbtemplate', 'usefile', 'checked');
@@ -180,7 +185,16 @@ class assign_submission_geogebra extends assign_submission_plugin {
         $mform->disabledIf('usefile', 'assignsubmission_geogebra_enabled', 'notchecked');
 
         $mform->addElement('html', $this->deployscript);
+
         $mform->addElement('html', '<div class="fitem"><div id="applet_container1" class="felement"></div></div>');
+
+        if ($usefile && $ggbparameters != '') {
+            $applet = $this->get_applet(null, $ggbparameters, $ggbcodebaseversion, $ggbviews);
+            $mform->addElement('html', $applet);
+            $mform->addElement('html', $this->ggbscript);
+        }
+
+        $this->add_applet_options($mform);
     }
 
     /**
@@ -192,7 +206,7 @@ class assign_submission_geogebra extends assign_submission_plugin {
      * @return bool - on error the subtype should call set_error and return false.
      */
     public function save_settings(stdClass $formdata) {
-        if ($formdata->usefile) {
+        if (isset($formdata->usefile) && $formdata->usefile) {
             if (empty($formdata->ggbparameters)
                     || empty($formdata->ggbviews)
                     || empty($formdata->ggbcodebaseversion)
@@ -207,6 +221,10 @@ class assign_submission_geogebra extends assign_submission_plugin {
             }
         } else {
             $this->set_config('ggbtemplate', $formdata->ggbtemplate);
+            $this->set_config('usefile', false);
+            $this->set_config('ggbparameters', "");
+            $this->set_config('ggbviews', "");
+            $this->set_config('ggbcodebaseversion', "");
             if ($formdata->ggbtemplate == 'userdefined') {
                 if (!isset($formdata->ggbturl)) {
                     parent::set_error("No url chosen!");
@@ -410,6 +428,42 @@ class assign_submission_geogebra extends assign_submission_plugin {
         return $str;
     }
 
+    private function add_applet_options($mform) {
+
+        $applet_advanced_settings = get_string('applet_advanced_settings', 'qtype_geogebra');
+        $enable_label_drags = get_string('enable_label_drags', 'qtype_geogebra');
+        $enable_right_click = get_string('enable_right_click', 'qtype_geogebra');
+        $enable_shift_drag_zoom = get_string('enable_shift_drag_zoom', 'qtype_geogebra');
+        $show_algebra_input = get_string('show_algebra_input', 'qtype_geogebra');
+        $show_menu_bar = get_string('show_menu_bar', 'qtype_geogebra');
+        $show_reset_icon = get_string('show_reset_icon', 'qtype_geogebra');
+        $show_tool_bar = get_string('show_tool_bar', 'qtype_geogebra');
+
+        $options = <<<HTML
+<div id='applet_options' class="fitem" >
+    <div class="fitemtitle"><label for="applet_options">$applet_advanced_settings</label></div>
+    <fieldset class="felement fgroup">
+        <input type="checkbox" id="enableRightClick" name="enableRightClick" value="1">
+        <label for="enableRightClick">$enable_right_click</label><br>
+        <input type="checkbox" id="enableLabelDrags" name="enableLabelDrags" value="1">
+        <label for="enableLabelDrags">$enable_label_drags</label><br>
+        <input type="checkbox" id="showResetIcon" name="showResetIcon" value="1" checked="checked">
+        <label for="showResetIcon">$show_reset_icon</label><br>
+        <input type="checkbox" id="enableShiftDragZoom" name="enableShiftDragZoom" value="1" checked="checked">
+        <label for="enableShiftDragZoom">$enable_shift_drag_zoom</label><br>
+        <input type="checkbox" id="showMenuBar" name="showMenuBar" value="1">
+        <label for="showMenuBar">$show_menu_bar</label><br>
+        <input type="checkbox" id="showToolBar" name="showToolBar" value="1">
+        <label for="showToolBar">$show_tool_bar</label><br>
+        <input type="checkbox" id="showAlgebraInput" name="showAlgebraInput" value="1">
+        <label for="showAlgebraInput">$show_algebra_input</label><br>
+    </fieldset>
+</div>
+HTML;
+
+        $mform->addElement('html', $options, "advanced");
+    }
+
     /**
      * @param        $geogebrasubmission
      * @param string $ggbparameters json encoded parameters for the applet.
@@ -431,6 +485,7 @@ class assign_submission_geogebra extends assign_submission_plugin {
             $applet .= 'var parameters=' . $ggbparameters . ';';
         }
         $applet .= 'parameters.language = "' . $lang . '";';
+        $applet .= 'parameters.moodle = "viewOrEditSubmission";';
         $applet .= 'var applet1 = new GGBApplet(';
         $applet .= ($ggbcodebaseversion !== '') ? '"' . $ggbcodebaseversion . '",' : '';
         $applet .= ($ggbparameters !== '') ? 'parameters,' : '';
