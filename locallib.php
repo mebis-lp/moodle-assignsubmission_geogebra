@@ -128,6 +128,9 @@ class assign_submission_geogebra extends assign_submission_plugin {
      * @return void
      */
     public function get_settings(MoodleQuickForm $mform) {
+
+        $ggbtrepo = repository::get_type_by_typename('geogebratube');
+
         $template = $this->get_config('ggbtemplate');
         $url = $this->get_config('ggbturl');
         $usefile = $this->get_config('usefile');
@@ -157,6 +160,7 @@ class assign_submission_geogebra extends assign_submission_plugin {
 
         // Partly copied from qtype ggb.
         $ggbturlinput = array();
+
         $clientid = uniqid();
         $fp = $this->initggtfilepicker($clientid, 'ggbturl');
 
@@ -164,10 +168,12 @@ class assign_submission_geogebra extends assign_submission_plugin {
                 'assignsubmission_geogebra'), $ggbtemplates);
         $mform->setDefault('ggbtemplate', $template);
         $mform->disabledIf('ggbtemplate', 'assignsubmission_geogebra_enabled', 'notchecked');
-        $ggbturlinput[] =& $mform->createElement('html', $fp);
-        $ggbturlinput[] =& $mform->createElement('button', 'filepicker-button-' . $clientid, get_string('choosealink',
-                'repository'));
-        $mform->disabledIf('filepicker-button-' . $clientid, 'ggbtemplate', 'neq', 'userdefined');
+        if ($ggbtrepo) {
+            $ggbturlinput[] =& $mform->createElement('html', $fp);
+            $ggbturlinput[] =& $mform->createElement('button', 'filepicker-button-' . $clientid, get_string('choosealink',
+                    'repository'));
+            $mform->disabledIf('filepicker-button-' . $clientid, 'ggbtemplate', 'neq', 'userdefined');
+        }
         $ggbturlinput[] =& $mform->createElement('text', 'ggbturl', '', array('size' => '20', 'value' => $url));
         $mform->disabledIf('ggbturl', 'ggbtemplate', 'neq', 'userdefined');
         $mform->setType('ggbturl', PARAM_RAW_TRIMMED);
@@ -181,7 +187,9 @@ class assign_submission_geogebra extends assign_submission_plugin {
         }
         $mform->disabledIf('ggbtemplate', 'usefile', 'checked');
         $mform->disabledIf('ggbturl', 'usefile', 'checked');
-        $mform->disabledIf('filepicker-button-' . $clientid, 'usefile', 'checked');
+        if ($ggbtrepo) {
+            $mform->disabledIf('filepicker-button-' . $clientid, 'usefile', 'checked');
+        }
         $mform->disabledIf('usefile', 'assignsubmission_geogebra_enabled', 'notchecked');
 
         $mform->addElement('html', $this->deployscript);
@@ -461,7 +469,7 @@ class assign_submission_geogebra extends assign_submission_plugin {
 </div>
 HTML;
 
-        $mform->addElement('html', $options, "advanced");
+        $mform->addElement('html', $options, 'advanced');
     }
 
     /**
