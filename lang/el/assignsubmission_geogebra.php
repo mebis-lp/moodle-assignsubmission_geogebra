@@ -26,5 +26,5 @@ $string['ggbturl_help'] = 'Η όψη ή το έργο στο GeoGebraTube  χρ�
 $string['perspective3d'] = 'Γραφικά 3D';
 $string['pluginname'] = 'Υποβολές GeoGebra';
 $string['probCalc'] = 'Υπολογιστής Πιθανότητας';
-$string['spreadsheet'] = 'Λογιστικό Φύλλο';
+$string['spreadsheet'] = 'Υπολογιστικό Φύλλο';
 $string['userdefined'] = 'Οριζόμενο από τον χρήστη:';

@@ -26,5 +26,5 @@ $string['ggbturl_help'] = 'Perspektif atau bahan GeoGebraTube dignakan sebagai t
 $string['perspective3d'] = 'Grafik-grafik 3D';
 $string['pluginname'] = 'Penyerahan-penyerahan GeoGebra';
 $string['probCalc'] = 'Kalkulator Kebarangkalian';
-$string['spreadsheet'] = 'Lembaran kerja';
+$string['spreadsheet'] = 'Hamparan Kerja';
 $string['userdefined'] = 'Takrifan pengguna:';
