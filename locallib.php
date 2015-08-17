@@ -420,6 +420,7 @@ class assign_submission_geogebra extends assign_submission_plugin {
         $args->client_id = $clientid;
         $args->elementname = $elementname;
         $args->env = 'ggbt';
+        $args->lang = current_language();
         // Is $args->type = 'geogebratube'; not working?
         $fp = new file_picker($args);
         $options = $fp->options;
