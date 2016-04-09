@@ -26,5 +26,5 @@ $string['ggbturl_help'] = 'The perspective or GeoGebraTube material used as temp
 $string['perspective3d'] = '3D Graphics';
 $string['pluginname'] = 'GeoGebra submissions';
 $string['probCalc'] = 'Probability Calculator';
-$string['spreadsheet'] = 'Spreadsheet';
+$string['spreadsheet'] = 'Regneark';
 $string['userdefined'] = 'User defined:';
