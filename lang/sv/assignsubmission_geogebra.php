@@ -27,4 +27,4 @@ $string['perspective3d'] = '3D Grafik';
 $string['pluginname'] = 'GeoGebrainlämningar';
 $string['probCalc'] = 'Sannolihetskalkylatorn';
 $string['spreadsheet'] = 'Kalkylblad';
-$string['userdefined'] = 'Anbvändardefinierad:';
+$string['userdefined'] = 'Användardefinierad:';
