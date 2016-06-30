@@ -519,7 +519,7 @@ EOD;
 EOD;
         }
         $applet .= 'window.onload = function () {';
-        $applet .= 'var applet1 = new GGBApplet(';
+        $applet .= 'applet1 = new GGBApplet(';
         $applet .= ($ggbcodebaseversion !== '') ? '"' . $ggbcodebaseversion . '",' : '';
         $applet .= ($ggbparameters !== '') ? 'parameters,' : '';
         $applet .= ($ggbviews !== '') ? $ggbviews . ',' : '';
