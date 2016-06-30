@@ -22,7 +22,7 @@ defined('MOODLE_INTERNAL') || die();
  */
 class assign_submission_geogebra extends assign_submission_plugin {
 
-    public $deployscript = '<script type="text/javascript" src="https://tube.geogebra.org/scripts/deployggb.js"></script>';
+    public $deployscript = '<script type="text/javascript" src="https://www.geogebra.org/scripts/deployggb.js"></script>';
 
     public $ggbscript = '<script type="text/javascript" src="submission/geogebra/ggba.js"></script>';
 
@@ -377,7 +377,7 @@ class assign_submission_geogebra extends assign_submission_plugin {
         if ($geogebrasubmission) {
             $result .= html_writer::tag('script', '', array(
                     'type' => 'text/javascript',
-                    'src'  => 'https://tube.geogebra.org/scripts/deployggb.js'));
+                    'src'  => 'https://www.geogebra.org/scripts/deployggb.js'));
             $result .= html_writer::div('', '', array('id' => 'applet_container1'));
             // We must not load the applet before it is visible, it would show nothing then.
             $applet = $this->get_applet($geogebrasubmission, '', '', '', true);
@@ -503,7 +503,7 @@ HTML;
         if (ggbdisplaytoggle.hasAttribute('src')) {
             ggbdisplaytoggle.on('click', function () {
 EOD;
-            $applet .= 'var applet1 = new GGBApplet(';
+            $applet .= 'applet1 = new GGBApplet(';
             $applet .= ($ggbcodebaseversion !== '') ? '"' . $ggbcodebaseversion . '",' : '';
             $applet .= ($ggbparameters !== '') ? 'parameters,' : '';
             $applet .= ($ggbviews !== '') ? $ggbviews . ',' : '';
