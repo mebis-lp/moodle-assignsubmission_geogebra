@@ -28,6 +28,3 @@ $string['pluginname'] = 'GeoGebra submissions';
 $string['probCalc'] = 'Probability Calculator';
 $string['spreadsheet'] = 'Spreadsheet';
 $string['userdefined'] = 'User defined:';
-$string['useafile'] = '... or use a ggb-file';
-$string['useafile_help'] = 'You may also use a ggb-file. Make sure that you enable GeoGebra submission type first!';
-$string['dragndrop'] = 'Drag and drop a GeoGebra file anywhere on the submission types section';
