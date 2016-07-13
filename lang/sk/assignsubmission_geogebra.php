@@ -28,6 +28,6 @@ $string['perspective3d'] = '3D grafika';
 $string['pluginname'] = 'GeoGebra zadanie';
 $string['probCalc'] = 'Kalkulátor pravdepodobnosti';
 $string['spreadsheet'] = 'Tabuľka';
-$string['useafile'] = '... or use a ggb-file';
+$string['useafile'] = '... alebo použi ggb súbor';
 $string['useafile_help'] = 'You may also use a ggb-file. Make sure that you enable GeoGebra submission type first!';
 $string['userdefined'] = 'Používateľom definované:';
