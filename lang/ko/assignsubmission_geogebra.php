@@ -29,5 +29,5 @@ $string['pluginname'] = '지오지브라 제출';
 $string['probCalc'] = '확률 계산기';
 $string['spreadsheet'] = '스프레드시트';
 $string['useafile'] = '... 또는 지오지브라 파일 사용';
-$string['useafile_help'] = 'You may also use a ggb-file. Make sure that you enable GeoGebra submission type first!';
+$string['useafile_help'] = 'ggb-파일을 사용할 수 있습니다. 지오지브라 제출 유형을 먼저 확인하십시오!';
 $string['userdefined'] = '사용자 정의:';
