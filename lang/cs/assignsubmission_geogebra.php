@@ -29,5 +29,5 @@ $string['pluginname'] = 'Odpovědi ke GeoGebra zadáním';
 $string['probCalc'] = 'Pravděpodobnost';
 $string['spreadsheet'] = 'Tabulka';
 $string['useafile'] = '... nebo použít .ggb soubor';
-$string['useafile_help'] = 'You may also use a ggb-file. Make sure that you enable GeoGebra submission type first!';
+$string['useafile_help'] = 'Můžete také použít .ggb soubor. Nejprve se ujistěte, že je povoleno odevzdávání GeoGebra materiálů!';
 $string['userdefined'] = 'Definováno uživatelem:';
