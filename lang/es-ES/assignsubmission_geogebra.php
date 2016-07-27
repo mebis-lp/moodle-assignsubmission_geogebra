@@ -29,5 +29,5 @@ $string['pluginname'] = 'Envíos de GeoGebra';
 $string['probCalc'] = 'Calculadora de probabilidades';
 $string['spreadsheet'] = 'Hoja de cálculo';
 $string['useafile'] = '... o usar un archivo ggb';
-$string['useafile_help'] = 'You may also use a ggb-file. Make sure that you enable GeoGebra submission type first!';
+$string['useafile_help'] = 'También puedes usar un archivo GGB. ¡Asegúrate antes de haber activado GeoGebra como tipo envío!';
 $string['userdefined'] = 'Definición de usuario:';
