@@ -29,5 +29,5 @@ $string['pluginname'] = 'GeoGebra-esitykset';
 $string['probCalc'] = 'Todennäköisyyslaskuri';
 $string['spreadsheet'] = 'Laskentataulukko';
 $string['useafile'] = '... tai käytä ggb-tiedostoa';
-$string['useafile_help'] = 'You may also use a ggb-file. Make sure that you enable GeoGebra submission type first!';
+$string['useafile_help'] = 'Voit käyttää myös ggb-tiedostoa. Varmista, että valtuutat GeoGebra-esitystavan ensin!';
 $string['userdefined'] = 'Käyttäjän määrittelemä:';
