@@ -11,7 +11,7 @@
  
 $string['geogebra'] = 'GeoGebra';
 $string['enabled'] = 'GeoGebra';
-$string['algebra'] = '代数';
+$string['algebra'] = '代数区';
 $string['allowgeogebrasubmissions'] = '已启用';
 $string['cas'] = '运算区';
 $string['default'] = '默认启用';
