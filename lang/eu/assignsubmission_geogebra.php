@@ -28,6 +28,6 @@ $string['perspective3d'] = '3D Grafikoak';
 $string['pluginname'] = 'GeoGebra-bidalketak';
 $string['probCalc'] = 'Probabilitate-kalkulagailua';
 $string['spreadsheet'] = 'Kalkulu-orria';
-$string['useafile'] = '... or use a ggb-file';
+$string['useafile'] = '... edota erabili ggb-artxiboren bat';
 $string['useafile_help'] = 'You may also use a ggb-file. Make sure that you enable GeoGebra submission type first!';
 $string['userdefined'] = 'Erabiltzailearen definizioa:';
