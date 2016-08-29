@@ -29,5 +29,5 @@ $string['pluginname'] = 'GeoGebrainlämningar';
 $string['probCalc'] = 'Sannolihetskalkylatorn';
 $string['spreadsheet'] = 'Kalkylblad';
 $string['useafile'] = '... eller använd en ggb-fil';
-$string['useafile_help'] = 'You may also use a ggb-file. Make sure that you enable GeoGebra submission type first!';
+$string['useafile_help'] = 'Du kan även använda en ggb-fil. Säkerställ att du aktiverat GeoGebras inlämningsfiler först!';
 $string['userdefined'] = 'Användardefinierad:';
