@@ -21,4 +21,4 @@ $plugin->component = 'assignsubmission_geogebra';
 
 $plugin->maturity = MATURITY_STABLE;
 
-$plugin->release = '1.0.1';
+$plugin->release = '1.0.2';
