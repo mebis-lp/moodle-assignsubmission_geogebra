@@ -29,5 +29,5 @@ $string['pluginname'] = 'Υποβολές GeoGebra';
 $string['probCalc'] = 'Υπολογιστής Πιθανότητας';
 $string['spreadsheet'] = 'Υπολογιστικό Φύλλο';
 $string['useafile'] = '... ή χρησιμοποιείστε άνα αρχείο ggb';
-$string['useafile_help'] = 'You may also use a ggb-file. Make sure that you enable GeoGebra submission type first!';
+$string['useafile_help'] = 'Μπορείτε επίσης να χρησιμοποιήσετε ένα αρχείο ggb. Πρώτα  βεβαιωθείτε ότι έχετε ενεργοποιήσει τον τύπο υποβολής!';
 $string['userdefined'] = 'Οριζόμενο από τον χρήστη:';
