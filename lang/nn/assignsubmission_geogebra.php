@@ -29,5 +29,5 @@ $string['pluginname'] = 'GeoGebra-innlevering';
 $string['probCalc'] = 'Sannsynlighetskalkulator';
 $string['spreadsheet'] = 'Rekneark';
 $string['useafile'] = '... eller bruk en ggb-fil';
-$string['useafile_help'] = 'You may also use a ggb-file. Make sure that you enable GeoGebra submission type first!';
+$string['useafile_help'] = 'Du kan også bruke en ggb-fil. Pass på at du aktiverer innleveringstypen for GeoGebra først.';
 $string['userdefined'] = 'Brukerdefinert:';
