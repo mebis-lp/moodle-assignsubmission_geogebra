@@ -28,6 +28,6 @@ $string['perspective3d'] = '3D 绘图区';
 $string['pluginname'] = 'GeoGebra 提交';
 $string['probCalc'] = '概率统计';
 $string['spreadsheet'] = '表格';
-$string['useafile'] = '... 或者使用 ggb 文件';
+$string['useafile'] = '...或者使用 ggb 文件';
 $string['useafile_help'] = '你也可以用 ggb 文件. 首先确定你启用的 GeoGebra 提交类型!';
 $string['userdefined'] = '用户定制:';
