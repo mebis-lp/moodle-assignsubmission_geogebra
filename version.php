@@ -11,14 +11,14 @@
 
 defined('MOODLE_INTERNAL') || die();
 
-$plugin->version = 2016092600;
-$plugin->requires = 2014051200;
+$plugin->version = 2019112700;
+$plugin->requires = 2018051702;
 $plugin->dependencies = array(
-        'qtype_geogebra' => 2014081906,
+        'qtype_geogebra' => 2019112700,
 );
 
 $plugin->component = 'assignsubmission_geogebra';
 
-$plugin->maturity = MATURITY_STABLE;
+$plugin->maturity = MATURITY_BETA;
 
-$plugin->release = '1.0.2';
+$plugin->release = '1.9.1';
