@@ -115,6 +115,7 @@ class assign_submission_geogebra extends assign_submission_plugin
         $parametersJSON = json_encode($parameters);
         $applet = <<<EOD
 <article id="applet_parameters"
+  class="assignsubmission_geogebra-article"
   data-parameters=$parametersJSON
   data-lang=$lang
   data-html5NoWebSimple="true">
@@ -409,6 +410,7 @@ EOD;
             $parametersJSON = $geogebrasubmission->ggbparameters;
             $applet = <<<EOD
 <article id="applet_parameters"
+  class="assignsubmission_geogebra-article"
   data-parameters=$parametersJSON
   data-lang=$lang
   data-html5NoWebSimple="true">
